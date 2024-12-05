@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // Base URLs for your microservices
-const USER_SERVICE_URL = 'http://localhost';
-const PRODUCT_SERVICE_URL = 'http://localhost';
-const ORDER_SERVICE_URL = 'http://localhost';
+const USER_SERVICE_URL = `http://localhost:5001`;
+const PRODUCT_SERVICE_URL = `http://localhost:5000`;
+const ORDER_SERVICE_URL = `http://localhost:5002`;
 
 // User Service APIs
 export const registerUser = async (userData) => {
