@@ -11,7 +11,7 @@ COPY requirerments.txt .
 
 RUN pip install -r requirerments.txt
 
-COPY app.py db_info.py ./
+COPY app.py database.py models.py ./
 
 USER python
 
