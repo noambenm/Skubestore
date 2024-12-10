@@ -9,7 +9,6 @@ class User(Base):
     name = Column(String(255), nullable=False)
     email = Column(String(255), unique=True, index=True, nullable=False)
     password = Column(String(255), nullable=False)
-    orders = relationship("Order", back_populates="user")
 
 class Order(Base):
     __tablename__ = 'orders'
@@ -20,5 +19,3 @@ class Order(Base):
     quantity = Column(Integer)
     total_price = Column(DECIMAL(10,2))
     paid = Column(Boolean, default=False)
-
-    user = relationship("User", back_populates="orders")
