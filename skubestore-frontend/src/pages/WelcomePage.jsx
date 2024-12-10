@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './WelcomePage.css'; // Import the CSS file
 
 function WelcomePage() {
   const navigate = useNavigate();
@@ -18,27 +19,21 @@ function WelcomePage() {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>Welcome to Skubestore</h1>
-      <p>Your one-stop shop for all your Skube Diving equipment needs!</p>
+    <div className="welcome-container">
+      <h1 className="welcome-title">Skubestore</h1>
+      <p className="welcome-subtitle">Your one-stop shop for all your Skube Diving equipment needs!</p>
 
       {userEmail ? (
-        <div style={{ marginTop: '20px' }}>
-          <p>Logged in as {userEmail}</p>
-          <button onClick={() => navigate('/products')} style={{ marginRight: '10px' }}>
-            View Products
-          </button>
-          <button onClick={handleLogout}>Logout</button>
+        <div className="button-group">
+          <p className="user-status">Logged in as {userEmail}</p>
+          <button className="welcome-button" onClick={() => navigate('/products')}>View Products</button>
+          <button className="welcome-button logout-button" onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <div style={{ marginTop: '20px' }}>
-          <button onClick={() => navigate('/products')} style={{ marginRight: '10px' }}>
-            View Products
-          </button>
-          <button onClick={() => navigate('/register')} style={{ marginRight: '10px' }}>
-            Register
-          </button>
-          <button onClick={() => navigate('/login')}>Login</button>
+        <div className="button-group">
+          <button className="welcome-button" onClick={() => navigate('/products')}>View Products</button>
+          <button className="welcome-button" onClick={() => navigate('/register')}>Register</button>
+          <button className="welcome-button" onClick={() => navigate('/login')}>Login</button>
         </div>
       )}
     </div>
