@@ -1,0 +1,56 @@
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #cbe9ff, #e2fcf7);
+    font-family: Arial, sans-serif;
+  }
+  
+  .welcome-title {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  
+  .user-status {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .welcome-button {
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .welcome-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .logout-button {
+    background-color: #dc3545;
+  }
+  
+  .logout-button:hover {
+    background-color: #a71d2a;
+  }
+  
