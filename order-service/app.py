@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 import mysql.connector
 from db_info import db, cursor
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 def create_order_table():
     cursor.execute(
