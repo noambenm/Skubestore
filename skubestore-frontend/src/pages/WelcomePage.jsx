@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './WelcomePage.css'; // Import the CSS file
+import './WelcomePage.css';
 
 function WelcomePage() {
   const navigate = useNavigate();
@@ -19,23 +19,31 @@ function WelcomePage() {
   };
 
   return (
-    <div className="welcome-container">
-      <h1 className="welcome-title">Skubestore</h1>
-      <p className="welcome-subtitle">Your one-stop shop for all your Skube Diving equipment needs!</p>
-
-      {userEmail ? (
-        <div className="button-group">
-          <p className="user-status">Logged in as {userEmail}</p>
-          <button className="welcome-button" onClick={() => navigate('/products')}>View Products</button>
-          <button className="welcome-button logout-button" onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        <div className="button-group">
-          <button className="welcome-button" onClick={() => navigate('/products')}>View Products</button>
-          <button className="welcome-button" onClick={() => navigate('/register')}>Register</button>
-          <button className="welcome-button" onClick={() => navigate('/login')}>Login</button>
-        </div>
-      )}
+    <div className="container">
+      <div className="header-center">
+        <h1 className="title">Skubestore</h1>
+        <p className="subtitle">Your one-stop shop for all your Skube Diving equipment needs!</p>
+      </div>
+      <div className="user-status-group">
+        {userEmail ? (
+          <>
+            <div className="user-status">Logged in as {userEmail}</div>
+            <button className="user-button logout-button" onClick={handleLogout}>Logout</button>        
+          </>
+        ) : (
+          <>
+            <button className="user-button login-button" onClick={() => navigate('/login')}>Login</button>
+            <button className="user-button login-button" onClick={() => navigate('/register')}>Register</button>
+          </>
+        )}
+      </div>
+      <div className="button-group">
+        {(
+          <>
+            <button className="welcome-button" onClick={() => navigate('/products')}>View Products</button>
+          </>
+        )}
+      </div>
     </div>
   );
 }
