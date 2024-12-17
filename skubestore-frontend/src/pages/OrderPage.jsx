@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { placeOrder } from '../services/api';
+import './OrderPage.css'; // Import the CSS file
 
 function OrderPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { product } = location.state;
   const [quantity, setQuantity] = useState(1);
 
@@ -17,22 +19,30 @@ function OrderPage() {
         total_price,
       });
       alert(response.message);
+      navigate('/products');
     } catch (error) {
-      alert(error.response.data.message || 'Order failed');
+      alert(error.response?.data?.message || 'Order failed');
     }
   };
 
   return (
-    <div>
-      <h2>Order {product.name}</h2>
-      <p>Price per unit: ${product.price}</p>
-      <input
-        type="number"
-        min="1"
-        value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
-      /><br />
-      <button onClick={handleOrder}>Place Order</button>
+    <div className="order-container">
+      <div className="order-card">
+        <h2 className="order-title">Order {product.name}</h2>
+        <p className="order-price">Price per unit: ${product.price}</p>
+        <div className="quantity-section">
+          <label className="quantity-label" htmlFor="quantity">Quantity:</label>
+          <input
+            id="quantity"
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            className="quantity-input"
+          />
+        </div>
+        <button className="order-button" onClick={handleOrder}>Place Order</button>
+      </div>
     </div>
   );
 }

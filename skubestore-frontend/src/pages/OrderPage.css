@@ -1,0 +1,73 @@
+.order-container {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #e3f2fd, #f1f8e9);
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .order-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .order-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .order-price {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quantity-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quantity-label {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+  
+  .quantity-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .quantity-input:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+  
+  .order-button {
+    background-color: #007BFF;
+    color: white;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .order-button:hover {
+    background-color: #0056b3;
+  }
+  
