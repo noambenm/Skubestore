@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 // Base URLs for your microservices
-const USER_SERVICE_URL = `http://localhost:5001`;
-const PRODUCT_SERVICE_URL = `http://localhost:5000`;
-const ORDER_SERVICE_URL = `http://localhost:5002`;
+export const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL;
+export const PRODUCT_SERVICE_URL = import.meta.env.VITE_PRODUCT_SERVICE_URL;
+export const ORDER_SERVICE_URL = import.meta.env.VITE_ORDER_SERVICE_URL;
+
 
 // User Service APIs
 export const registerUser = async (userData) => {
