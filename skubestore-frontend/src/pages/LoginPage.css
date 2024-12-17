@@ -1,6 +1,5 @@
 .login-container {
     min-height: 100vh;
-    background: linear-gradient(to bottom right, #cbe9ff, #e2fcf7);
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
