@@ -41,10 +41,6 @@ function Header() {
         <div className="header-center" onClick={() => navigate('/')}>
           <h1 className="header-title">Skubestore</h1>
         </div>
-
-        <div className="header-right">
-          {/* Additional elements can go here if needed, or leave empty for symmetry */}
-        </div>
       </div>
 
       <div className="header-nav">
