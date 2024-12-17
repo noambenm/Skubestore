@@ -1,0 +1,99 @@
+.header-container {
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem;
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.user-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.user-group button {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.login-button {
+  background-color: rgb(90, 220, 50);
+}
+
+.login-button:hover {
+  background-color: rgb(90, 170, 50);
+}
+
+.register-button {
+  background-color: rgb(50, 90, 220);
+}
+
+.register-button:hover {
+  background-color: rgb(50, 90, 170);
+}
+
+.logout-button {
+  background-color: #dc3848;
+}
+
+.logout-button:hover {
+  background-color: #a71d2a;
+}
+
+.user-status {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #333;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: #f7f7f7;
+  padding: 10px 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #007BFF;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #003e80;
+}
