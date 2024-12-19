@@ -1,41 +1,63 @@
 from flask import Flask, request, jsonify
-import mysql.connector
-from db_info import db, cursor
-import os
+from flask_cors import CORS
+from database import SessionLocal, Base, engine
+from models import Product
 
 app = Flask(__name__)
+CORS(app)
 
-def create_products_table():
-    cursor.execute(
-        """CREATE TABLE IF NOT EXISTS products (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255),
-        description VARCHAR(255),
-        price DECIMAL(10, 2)
-        );
-        """)
-    db.commit()
-
-create_products_table()
+# Create tables if they don't exist
+Base.metadata.create_all(bind=engine)
 
 @app.route('/products/add', methods=['POST'])
 def add_product():
     data = request.get_json()
-    cursor.execute("INSERT INTO products (name, description, price) VALUES (%s, %s, %s)", (data['name'], data['description'], data['price']))
-    db.commit()
-    return jsonify({'message': 'Product added successfully'})
+    session = SessionLocal()
+    try:
+        new_product = Product(
+            name=data['name'],
+            description=data.get('description', ''),  # Default empty string if not provided
+            price=data['price']
+        )
+        session.add(new_product)
+        session.commit()
+        return jsonify({'message': 'Product added successfully'})
+    except Exception as e:
+        session.rollback()
+        return jsonify({'error': str(e)}), 500
+    finally:
+        session.close()
 
 @app.route('/products/delete/<int:product_id>', methods=['DELETE'])
 def delete_product(product_id):
-    cursor.execute("DELETE FROM products WHERE id=%s", (product_id,))
-    db.commit()
-    return jsonify({'message': 'Product deleted successfully'})
+    session = SessionLocal()
+    try:
+        product = session.query(Product).filter(Product.id == product_id).first()
+        if not product:
+            return jsonify({'message': 'Product not found'}), 404
+
+        session.delete(product)
+        session.commit()
+        return jsonify({'message': 'Product deleted successfully'})
+    except Exception as e:
+        session.rollback()
+        return jsonify({'error': str(e)}), 500
+    finally:
+        session.close()
 
 @app.route('/products/view', methods=['GET'])
 def view_products():
-    cursor.execute("SELECT * FROM products")
-    products = cursor.fetchall()
-    return jsonify([{'id': p[0], 'name': p[1], 'description': p[2], 'price': p[3]} for p in products])
+    session = SessionLocal()
+    try:
+        products = session.query(Product).all()
+        return jsonify([{
+            'id': p.id,
+            'name': p.name,
+            'description': p.description,
+            'price': str(p.price)
+        } for p in products])
+    finally:
+        session.close()
 
 if __name__ == '__main__':
     app.run()
