@@ -1,40 +1,45 @@
 from flask import Flask, request, jsonify
-import mysql.connector
-from db_info import db, cursor
-import os
+from flask_cors import CORS
+from database import SessionLocal, Base, engine
+from models import User
 
 app = Flask(__name__)
+CORS(app)
 
-def create_users_table():
-    cursor.execute(
-        """CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255),
-        email VARCHAR(255),
-        password VARCHAR(255)
-        );
-        """)
-                
-    db.commit()
-
-create_users_table()
+# Create all tables if they don't exist
+Base.metadata.create_all(bind=engine)
 
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    cursor.execute("SELECT * FROM users WHERE email=%s AND password=%s", (data['email'], data['password']))
-    user = cursor.fetchone()
-    if user:
-        return jsonify({'message': 'Logged in successfully', 'user': {'id': user[0], 'name': user[1], 'email': user[2]}})
-    else:
-        return jsonify({'message': 'Invalid login credentials'}), 401
+    session = SessionLocal()
+
+    try:
+        user = session.query(User).filter_by(email=data['email'], password=data['password']).first()
+        if user:
+            return jsonify({'message': 'Logged in successfully', 
+                            'user': {'id': user.id, 'name': user.name, 'email': user.email}})
+        else:
+            return jsonify({'message': 'Invalid login credentials'}), 401
+    finally:
+        session.close()
 
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    cursor.execute("INSERT INTO users (name, email, password) VALUES (%s, %s, %s)", (data['name'], data['email'], data['password']))
-    db.commit()
-    return jsonify({'message': 'User registered successfully'})
+    session = SessionLocal()
+    try:
+        # Check if user already exists
+        existing_user = session.query(User).filter_by(email=data['email']).first()
+        if existing_user:
+            return jsonify({'message': 'User already exists'}), 400
+
+        new_user = User(name=data['name'], email=data['email'], password=data['password'])
+        session.add(new_user)
+        session.commit()
+        return jsonify({'message': 'User registered successfully'})
+    finally:
+        session.close()
 
 if __name__ == '__main__':
     app.run()
