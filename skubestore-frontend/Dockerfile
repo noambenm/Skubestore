@@ -1,29 +1,44 @@
-# Use an official Node.js runtime as a parent image
-FROM node:20-alpine3.19 AS build
+## Dockerfile
+################################
+## BUILD ENVIRONMENT ###########
+################################
 
-# Set the working directory
-WORKDIR /app
+# Use the official Node.js Alpine image (adjust based on your project's requirements)
+# You can find the appropriate image on Docker Hub: https://hub.docker.com/_/node
+# In this example, we're using node:20-alpine3.20
+# run in termilnal commande line "node --version to get the version of your app"
+FROM node:20-alpine3.20 As build
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Set the working directory inside the container
+WORKDIR /usr/src/app
 
-# Install dependencies
-RUN npm install
+# Copy package.json and package-lock.json into the container
+COPY package*.json package-lock.json ./
 
-# Copy the rest of the application code
-COPY . .
+# Install dependencies using npm
+RUN npm ci
 
-# Build the application
+# Copy the project files into the working directory
+COPY ./ ./
+
+# Build the React app for production
 RUN npm run build
 
-# Use a minimal image for serving static files
-FROM nginx:alpine
+################################
+#### PRODUCTION ENVIRONMENT ####
+################################
 
-# Copy the built files from the previous stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Use the official NGINX image for production
+FROM nginx:stable-alpine as production
 
-# Expose port 80
+# copy nginx configuration in side conf.d folder
+COPY --from=build /usr/src/app/nginx /etc/nginx/conf.d
+
+# Copy the build output from the dist folder into the Nginx html directory
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+
+# Expose port 80 to allow access to the app
 EXPOSE 80
 
-# Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Run Nginx in the foreground
+ENTRYPOINT ["nginx", "-g", "daemon off;"] 
