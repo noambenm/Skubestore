@@ -12,7 +12,7 @@ perform_request() {
   fi
 }
 
-sleep 15
+sleep 30
 # Adding products to the store
 perform_request '{"name": "Wetsuit", "description": "5mm Forth Element Wetsuit", "price": "1400"}' "$SKUBESTORE_APP_API_URL:$PRODUCT_SERVICE_PORT/products/add"
 perform_request '{"name": "Regulator", "description": "ScubaPro MK25 Evo S260 Regulators", "price": "4500"}' "$SKUBESTORE_APP_API_URL:$PRODUCT_SERVICE_PORT/products/add"
