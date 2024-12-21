@@ -5,14 +5,28 @@ PRODUCT_SERVICE_PORT="5000"
 USER_SERVICE_PORT="5001"
 ORDER_SERVICE_PORT="5002"
 
-# Function to handle curl requests and exit on failure
-perform_request() {
-  if ! curl --fail --silent --show-error --json "$1" "$2"; then
-    exit 1
-  fi
-}
 
 sleep 30
+# Function to handle curl requests and retry on failure
+perform_request() {
+  local data="$1"
+  local url="$2"
+  local max_retries=3
+  local attempt=0
+
+  while [ $attempt -lt $max_retries ]; do
+    if curl --fail --silent --show-error --json "$data" "$url"; then
+      return 0
+    fi
+    attempt=$((attempt + 1))
+    echo "Retrying... ($attempt/$max_retries)"
+    sleep 5
+  done
+
+  echo "Failed after $max_retries attempts: $url"
+  exit 1
+}
+
 # Adding products to the store
 perform_request '{"name": "Wetsuit", "description": "5mm Forth Element Wetsuit", "price": "1400"}' "$SKUBESTORE_APP_API_URL:$PRODUCT_SERVICE_PORT/products/add"
 perform_request '{"name": "Regulator", "description": "ScubaPro MK25 Evo S260 Regulators", "price": "4500"}' "$SKUBESTORE_APP_API_URL:$PRODUCT_SERVICE_PORT/products/add"
