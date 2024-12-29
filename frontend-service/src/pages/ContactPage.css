@@ -1,0 +1,77 @@
+/* ContactPage.css */
+
+/* Let the entire container handle text centering, 
+   except we'll override the form fields to be left-aligned if needed. */
+   .contact-container {
+    text-align: center; /* center headings, paragraphs, and lists by default */
+    padding: 20px;      /* optional spacing */
+  }
+  
+  /* Contact info block: inherits 'text-align: center' from the container */
+  .contact-info {
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  
+  /* The list of contact details (Email, Phone, Address) */
+  .contact-info ul {
+    list-style-type: none;      /* remove default bullets */
+    padding: 0;
+    margin: 0 auto;             /* center the list horizontally */
+    display: inline-block;      /* so it collapses to content width */
+    text-align: left;           /* to left-align the text within the list items */
+  }
+  
+  /* The contact form remains centered but the fields can be left-aligned */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto; /* center the form container */
+    text-align: left; /* input labels and placeholders read better left-aligned */
+  }
+  
+  /* Input fields and textareas */
+  .contact-input,
+  .contact-textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Textarea specifics */
+  .contact-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  /* The send button is centered horizontally by `align-self: center` 
+     but still sits left-aligned if you prefer. 
+     If you want it left-aligned, remove 'align-self: center'.
+  */
+  .contact-button {
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+  }
+  
+  .contact-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Page title and subtitle, if you want further styling,
+     can be targeted specifically by class: 
+     .page-title, .page-subtitle {
+       margin-top: 0;
+     }
+  */
+  
