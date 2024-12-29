@@ -71,11 +71,11 @@ services:
     networks:
       - skubestore-network
 
-  skubestore-frontend:
+  frontend-service:
     build:
-      context: ./skubestore-frontend
+      context: ./frontend-service
       dockerfile: Dockerfile
-    container_name: skubestore-frontend
+    container_name: frontend-service
     depends_on:
       - backend-product-service
       - backend-user-service
