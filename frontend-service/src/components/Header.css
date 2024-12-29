@@ -1,6 +1,7 @@
 .header-container {
   background: #fff;
   font-family: Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .header-top {
@@ -31,6 +32,20 @@
   gap: 10px;
 }
 
+.user-status {
+  font-size: 0.9rem;
+  color: #444;
+  background-color: #f1f1f1; 
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 500;
+  align-self: center;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
 .user-group button {
   border: none;
   border-radius: 5px;
@@ -55,7 +70,7 @@
 }
 
 .register-button:hover {
-  background-color: rgb(50, 90, 170);
+  background-color: rgb(50, 70, 170);
 }
 
 .logout-button {
@@ -64,11 +79,6 @@
 
 .logout-button:hover {
   background-color: #a71d2a;
-}
-
-.user-status {
-  font-size: 0.9rem;
-  color: #444;
 }
 
 .header-title {
@@ -84,6 +94,7 @@
   gap: 20px;
   background: #f7f7f7;
   padding: 10px 20px;
+  border-top: 1px solid #e0e0e0;
 }
 
 .nav-link {

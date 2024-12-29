@@ -1,15 +1,15 @@
 // Header.jsx
 import React, { useContext } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';  // <-- import
+import { AuthContext } from '../context/AuthContext';
 import './Header.css';
 
 function Header() {
-  const { userEmail, logout } = useContext(AuthContext);  // <-- destructure userEmail & logout
+  const { userEmail, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();         // call context logout
+    logout();
     navigate('/');
   };
 
@@ -20,7 +20,9 @@ function Header() {
             <div className="user-group">
             {userEmail ? (
                 <>
-                <span className="user-status">Logged in as {userEmail}</span>
+                <span
+                  className="user-status">Hello, <span className="user-name">{userEmail}</span>
+                </span>
                 <button className="logout-button" onClick={handleLogout}>Logout</button>
                 </>
             ) : (
@@ -42,7 +44,6 @@ function Header() {
         <NavLink to="/products" className="nav-link">Products</NavLink>
         <NavLink to="/about" className="nav-link">About Us</NavLink>
         <NavLink to="/contact" className="nav-link">Contact Us</NavLink>
-        {/* Add more nav links as needed */}
       </div>
     </header>
   );
