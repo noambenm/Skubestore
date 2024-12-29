@@ -1,0 +1,48 @@
+/* AboutPage.css */
+
+/* Extend the page-container style from index.css if needed */
+.about-container {
+    /* We can nest this or simply use page-container */
+    /* e.g., .page-container.about-container for combined classes */
+  }
+  
+  /* Profile Section */
+  .profile-section {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;   /* center horizontally */
+    align-items: center;       /* center vertically if same height elements */
+    margin-bottom: 2rem;
+  }
+  
+  .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;       /* circular image */
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .profile-description {
+    max-width: 600px;
+    color: #444;
+    line-height: 1.5;
+  }
+  
+  /* Social Links */
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 1rem;
+  }
+  .social-links a {
+    color: #007BFF;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .social-links a:hover {
+    color: #0056b3;
+  }
+  
