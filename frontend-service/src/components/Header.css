@@ -7,7 +7,8 @@
 .header-top {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  /* 1) Align items center instead of baseline */
+  align-items: center;
   padding: 1rem;
   position: relative;
 }
@@ -19,6 +20,7 @@
   flex: 1;
 }
 
+/* Keep the title absolutely centered horizontally */
 .header-center {
   position: absolute;
   left: 50%;
@@ -32,6 +34,7 @@
   gap: 10px;
 }
 
+/* User Status (Logged in as ...) stays the same */
 .user-status {
   font-size: 0.9rem;
   color: #444;
@@ -42,10 +45,12 @@
   align-self: center;
 }
 
+/* Bold + different font for user name */
 .user-name {
   font-weight: bold;
 }
 
+/* Apply custom styling to these buttons specifically */
 .user-group button {
   border: none;
   border-radius: 5px;
@@ -57,14 +62,16 @@
   text-align: center;
 }
 
+/* 2) Force the login button color to override index.css */
 .login-button {
-  background-color: rgb(90, 220, 50);
+  background-color: rgb(90, 220, 50) !important;
 }
 
 .login-button:hover {
-  background-color: rgb(90, 170, 50);
+  background-color: rgb(90, 170, 50) !important;
 }
 
+/* Register and Logout remain unchanged */
 .register-button {
   background-color: rgb(50, 90, 220);
 }
@@ -88,6 +95,7 @@
   color: #333;
 }
 
+/* Navigation bar below */
 .header-nav {
   display: flex;
   justify-content: center;
