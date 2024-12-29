@@ -16,4 +16,4 @@ COPY app.py database.py models.py ./
 USER python
 
 ENTRYPOINT [ "flask", "run" ]
-CMD [ "--host=0.0.0.0", "--port=5000", "--debug" ]
+CMD [ "--host=0.0.0.0", "--port=5000"]
