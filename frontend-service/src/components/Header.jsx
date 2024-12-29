@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from 'react';
+// Header.jsx
+import React, { useContext } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';  // <-- import
 import './Header.css';
 
 function Header() {
-  const [userEmail, setUserEmail] = useState(null);
+  const { userEmail, logout } = useContext(AuthContext);  // <-- destructure userEmail & logout
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedEmail = localStorage.getItem('userEmail');
-    if (storedEmail) {
-      setUserEmail(storedEmail);
-    }
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem('userEmail');
-    setUserEmail(null);
+    logout();         // call context logout
     navigate('/');
   };
 
