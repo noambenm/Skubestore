@@ -1,4 +1,3 @@
-// Header.jsx
 import React, { useContext } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
