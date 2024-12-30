@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/api';
+import { AuthContext } from '../context/AuthContext';
 import './RegisterPage.css';
 
 function RegisterPage() {
@@ -9,12 +10,14 @@ function RegisterPage() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const { login } = useContext(AuthContext);
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const response = await registerUser({ name, email, password });
       alert(response.message);
-      localStorage.setItem('userEmail', email);
+      login(email);
       navigate('/');
     } catch (error) {
       alert(error.response?.data?.message || 'Registration failed');
