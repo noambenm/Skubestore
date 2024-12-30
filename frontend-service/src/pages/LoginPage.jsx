@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/api';
+import { AuthContext } from '../context/AuthContext';
 import './LoginPage.css';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -13,6 +15,9 @@ function LoginPage() {
     try {
       const response = await loginUser({ email, password });
       alert(response.message);
+
+      login(email);
+
       navigate('/');
     } catch (error) {
       alert(error.response?.data?.message || 'Login failed');
