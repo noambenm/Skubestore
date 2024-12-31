@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // Base URLs for your microservices
-export const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL;
-export const PRODUCT_SERVICE_URL = import.meta.env.VITE_PRODUCT_SERVICE_URL;
-export const ORDER_SERVICE_URL = import.meta.env.VITE_ORDER_SERVICE_URL;
+export const USER_SERVICE_URL = "skubestore.click/register"
+export const PRODUCT_SERVICE_URL = "skubestore.click/products"
+export const ORDER_SERVICE_URL = "skubestore.click/orders"
 
 
 // User Service APIs
