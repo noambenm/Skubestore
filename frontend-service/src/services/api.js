@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // Base URLs for your microservices
-export const USER_SERVICE_URL = ""
-export const PRODUCT_SERVICE_URL = ""
-export const ORDER_SERVICE_URL = ""
+export const USER_SERVICE_URL = "//"
+export const PRODUCT_SERVICE_URL = "//"
+export const ORDER_SERVICE_URL = "//"
 
 
 // User Service APIs
