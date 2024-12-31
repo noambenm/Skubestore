@@ -28,8 +28,14 @@ RUN npm run build
 #### PRODUCTION ENVIRONMENT ####
 ################################
 
-# Use the official NGINX image for production
-FROM nginx:stable-alpine as production
+# 1) Remove any default Nginx config
+RUN rm /etc/nginx/conf.d/default.conf
+
+# 2) Copy your custom config (placed at `nginx/default.conf`)
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# 3) Copy the built files from the previous stage
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # copy nginx configuration in side conf.d folder
 COPY --from=build /usr/src/app/nginx /etc/nginx/conf.d
