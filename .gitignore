@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+skubestore-frontend/.env
+=======
 .env
 docker-compose.yml
 skubestore-frontend/.env
+>>>>>>> 5c9df4d63814fb290701f9d62a317549ae519bcc

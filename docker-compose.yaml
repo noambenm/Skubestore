@@ -1,0 +1,94 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: my-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: skubestore
+      MYSQL_USER: skubestore
+      MYSQL_PASSWORD: password2
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - skubestore-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  backend-product-service:
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    container_name: product-service
+    environment:
+      MYSQL_HOST: my-mysql
+      MYSQL_USER: skubestore
+      MYSQL_PASSWORD: password2
+      MYSQL_DATABASE: skubestore
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    networks:
+      - skubestore-network
+
+  backend-user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    container_name: user-service
+    environment:
+      MYSQL_HOST: my-mysql
+      MYSQL_USER: skubestore
+      MYSQL_PASSWORD: password2
+      MYSQL_DATABASE: skubestore
+    depends_on:
+      - db
+    ports:
+      - "5001:5000"
+    networks:
+      - skubestore-network
+
+  backend-order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    container_name: order-service
+    environment:
+      MYSQL_HOST: my-mysql
+      MYSQL_USER: skubestore
+      MYSQL_PASSWORD: password2
+      MYSQL_DATABASE: skubestore
+    depends_on:
+      - db
+    ports:
+      - "5002:5000"
+    networks:
+      - skubestore-network
+
+  frontend-service:
+    build:
+      context: ./frontend-service
+      dockerfile: Dockerfile
+    container_name: frontend-service
+    depends_on:
+      - backend-product-service
+      - backend-user-service
+      - backend-order-service
+    ports:
+      - "80:80"
+    networks:
+      - skubestore-network
+
+networks:
+  skubestore-network:
+    driver: bridge
+
+volumes:
+  db_data:
+
