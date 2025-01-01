@@ -1,48 +1,52 @@
 /* AboutPage.css */
 
-/* Extend the page-container style from index.css if needed */
-.about-container {
-    /* We can nest this or simply use page-container */
-    /* e.g., .page-container.about-container for combined classes */
+/* The container reuses global .page-container styling 
+   but we can add a specific .about-container for additional customization. */
+   .about-container {
+    /* optional additional overrides or spacing */
+    padding: 20px;
   }
   
-  /* Profile Section */
-  .profile-section {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: center;   /* center horizontally */
-    align-items: center;       /* center vertically if same height elements */
+  /* Title & subtitle - consistent with other pages */
+  .page-title {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .page-subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  /* Main about content text */
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;   /* center block content */
+    line-height: 1.6;
+    color: #444;
+    text-align: left; /* for consistent reading flow */
     margin-bottom: 2rem;
   }
   
-  .profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;       /* circular image */
-    object-fit: cover;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  .about-content p {
+    margin-bottom: 1rem;
   }
   
-  .profile-description {
+  /* A styled quote or call-out section */
+  .about-quote {
+    margin: 0 auto;
     max-width: 600px;
-    color: #444;
-    line-height: 1.5;
-  }
-  
-  /* Social Links */
-  .social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 1rem;
-  }
-  .social-links a {
-    color: #007BFF;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .social-links a:hover {
-    color: #0056b3;
+    background-color: #f7f7f7;
+    border-left: 4px solid #007BFF;
+    padding: 1rem;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    border-radius: 4px;
   }
   
