@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Point directly to the internal Ingress URL
 // Adjust if needed for your environment
-const BASE_URL = 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local';
+const BASE_URL = 'https://api.skubestore.click';
 
 // User Service APIs
 export const registerUser = async (userData) => {
