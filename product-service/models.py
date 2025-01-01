@@ -8,3 +8,4 @@ class Product(Base):
     name = Column(String(255), nullable=False)
     description = Column(String(255))
     price = Column(DECIMAL(10, 2), nullable=False)
+    image = Column(String(255))
