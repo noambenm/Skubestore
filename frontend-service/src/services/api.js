@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-// Base URLs for your microservices
-export const VITE_USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL || '';
-export const VITE_PRODUCT_SERVICE_URL = import.meta.env.VITE_PRODUCT_SERVICE_URL || '';
-export const VITE_ORDER_SERVICE_URL = import.meta.env.VITE_ORDER_SERVICE_URL || '';
-
+// Point directly to the internal Ingress URL
+// Adjust if needed for your environment
+const BASE_URL = 'https://api.skubestore.click';
 
 // User Service APIs
 export const registerUser = async (userData) => {
