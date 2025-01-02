@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProductsPage from './pages/ProductsPage';
 import OrderPage from './pages/OrderPage';
+import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/order" element={<OrderPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/about" element={<AboutPage />} />
     </Routes>
   );
 }
