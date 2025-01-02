@@ -17,7 +17,8 @@ def add_product():
         new_product = Product(
             name=data['name'],
             description=data.get('description', ''),  # Default empty string if not provided
-            price=data['price']
+            price=data['price'],
+            image=data.get('image', '')  # Default empty string if not provided
         )
         session.add(new_product)
         session.commit()
@@ -54,7 +55,8 @@ def view_products():
             'id': p.id,
             'name': p.name,
             'description': p.description,
-            'price': str(p.price)
+            'price': str(p.price),
+            'image': p.image
         } for p in products])
     finally:
         session.close()
