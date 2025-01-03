@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Point directly to the internal Ingress URL
 // Adjust if needed for your environment
-const BASE_URL = 'https://api.skubestore.click';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || '';
 
 // User Service APIs
 export const registerUser = async (userData) => {
